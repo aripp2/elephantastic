@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom";
-
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { getRandom } from '../util/apiCalls';
 import NavHeader from '../NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
@@ -10,37 +10,38 @@ import Vote from '../Vote/Vote';
 import './App.scss';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      random: {},
-      error: ''
-    }
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     random: {},
+  //     error: ''
+  //   }
+  // }
 
   async componentDidMount() {
+    const { setRandom, throwError } = this.props;
     try {
       const random = await getRandom();
-      this.setState({ random })
+      setRandom(random)
     } catch({ message }) {
-      this.setState({ message})
+      throwError(message)
     }
   }
 
   render() {
-
+    const { errorMsg } = this.props;
 
     return (
       <div className="App">
         <NavHeader />
         <main>
-          <Route exact path='/' render={() => <Vote random={this.state.random}/>}/>
+          {<errorMsg && <h2>{errorMsg}</h2>}
+          <Route exact path='/' render={() => <Vote />}/>
           <Route path='/search' render={() => 
             <main>
               <SearchForm /> 
               <SearchContainer /> 
-            </main>  
-              }/>
+            </main>}/>
           <Route path='/favorites' render={() => <FavoritesContainer />} />
 
         </main>
@@ -49,4 +50,13 @@ export class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = { errorMsg } => ({
+  errorMsg
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setRandom: pup => dispatch(setRandom(pup)),
+  throwError: error => dispatch(throwError(error))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

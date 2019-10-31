@@ -1,16 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Vote.scss';
 
 
-const Vote = ({ random }) => {
+const Vote = ({ randomPup }) => {
 
   return (
     <section>
       <button>LOVE IT!</button>
       <button>NOT SO MUCH</button>
-      <img src={random.url} alt='dog'/>
+      <img className='voteImg' src={randomPup.url} alt='dog'/>
     </section>
   )
 }
 
-export default Vote;
+export const mapStateToProps = { randomPup } => ({
+  randomPup
+})
+
+export default (mapStateToProps)(Vote);

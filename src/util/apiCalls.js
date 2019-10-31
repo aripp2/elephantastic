@@ -1,12 +1,3 @@
-// export const getRandomElephant = async () => {
-//   const response = await fetch('https://elephant-api.herokuapp.com/elephants/random')
-//   if(!response.ok) {
-//     console.log(response)
-//   }
-//   const random = await response.json();
-//   console.log(random)
-//   return random;
-// }
 const xKey = 'fdae1377-8b39-4c2b-a87f-38d9ef268562';
 const getOptions = {
     method: 'GET',
@@ -19,10 +10,9 @@ export const getRandom = async() => {
   const url = 'https://api.thedogapi.com/v1/images/search';
   const response = await fetch(url, getOptions)
   if(!response.ok) {
-    console.log(response)
+    throw Error('There was an issue getting a pup, try again later.')
   }
   const random = await response.json();
-  // console.log(random)
   return random[0]
 
 }
