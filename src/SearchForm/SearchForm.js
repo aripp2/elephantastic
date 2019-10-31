@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './NavForm.scss';
+import './SearchForm.scss';
 
-export class NavForm extends Component {
+export class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -11,10 +11,10 @@ export class NavForm extends Component {
 
   render() {
     return (
-      <p>NavForm</p>
+      <p>SearchForm</p>
     )
   }
 }
 
 
-export default NavForm;
+export default SearchForm;

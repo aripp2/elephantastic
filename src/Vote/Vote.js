@@ -1,8 +1,8 @@
 import React from 'react';
-import './MainContainer.scss';
+import './Vote.scss';
 
 
-const MainContainer = ({ random }) => {
+const Vote = ({ random }) => {
 
   return (
     <section>
@@ -13,4 +13,4 @@ const MainContainer = ({ random }) => {
   )
 }
 
-export default MainContainer;
+export default Vote;
