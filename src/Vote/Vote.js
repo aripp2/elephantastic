@@ -4,7 +4,7 @@ import './Vote.scss';
 
 
 const Vote = ({ randomPup }) => {
-
+  
   return (
     <section>
       <button>LOVE IT!</button>
@@ -14,8 +14,8 @@ const Vote = ({ randomPup }) => {
   )
 }
 
-export const mapStateToProps = { randomPup } => ({
+export const mapStateToProps = ({ randomPup }) => ({
   randomPup
 })
 
-export default (mapStateToProps)(Vote);
+export default connect(mapStateToProps)(Vote);

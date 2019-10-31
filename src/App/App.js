@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getRandom } from '../util/apiCalls';
+import { setRandom, throwError } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
 import SearchContainer from '../SearchContainer/SearchContainer';
@@ -29,20 +30,21 @@ export class App extends Component {
   }
 
   render() {
-    const { errorMsg } = this.props;
+    const { errorMsg, randomPup } = this.props;
 
     return (
       <div className="App">
         <NavHeader />
         <main>
-          {<errorMsg && <h2>{errorMsg}</h2>}
-          <Route exact path='/' render={() => <Vote />}/>
+          {errorMsg && <h2>{errorMsg}</h2>}
+          {randomPup && <Route exact path='/' render={() => <Vote />}/>}
           <Route path='/search' render={() => 
             <main>
               <SearchForm /> 
               <SearchContainer /> 
             </main>}/>
-          <Route path='/favorites' render={() => <FavoritesContainer />} />
+          <Route path='/favorites' render={() => 
+            <FavoritesContainer />} />
 
         </main>
       </div>
@@ -50,8 +52,9 @@ export class App extends Component {
   }
 }
 
-export const mapStateToProps = { errorMsg } => ({
-  errorMsg
+export const mapStateToProps = ({ errorMsg, randomPup }) => ({
+  errorMsg,
+  randomPup
 })
 
 export const mapDispatchToProps = dispatch => ({

@@ -4,6 +4,6 @@ export const setRandom = pup =>({
 })
 
 export const throwError = error => ({
-  type: 'THROW_ERROR':
+  type: 'THROW_ERROR',
   error
 })

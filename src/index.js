@@ -8,7 +8,7 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './reducers';
 
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, composeWithDevTools());
 
 const router = (
   <BrowserRouter>
@@ -18,8 +18,8 @@ const router = (
 
 ReactDOM.render(
   <Provider store={store}>
-    router
-  </Provider>
-  , document.getElementById('root'));
+    {router}
+  </Provider>,
+  document.getElementById('root'));
 
 
