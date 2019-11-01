@@ -11,15 +11,13 @@ import Vote from '../Vote/Vote';
 import './App.scss';
 
 export class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     random: {},
-  //     error: ''
-  //   }
-  // }
+  constructor() {
+    super();
+    this.state = {
+    }
+  }
 
-  async componentDidMount() {
+  updateRandom = async() => {
     const { setRandom, throwError } = this.props;
     try {
       const random = await getRandom();
@@ -29,6 +27,18 @@ export class App extends Component {
     }
   }
 
+  async componentDidMount() {
+    await this.updateRandom()
+    // const { setRandom, throwError } = this.props;
+    // try {
+    //   const random = await getRandom();
+    //   setRandom(random)
+    // } catch({ message }) {
+    //   throwError(message)
+    // }
+  }
+
+
   render() {
     const { errorMsg, randomPup } = this.props;
 
@@ -37,7 +47,7 @@ export class App extends Component {
         <NavHeader />
         <main>
           {errorMsg && <h2>{errorMsg}</h2>}
-          {randomPup && <Route exact path='/' render={() => <Vote />}/>}
+          {randomPup && <Route exact path='/' render={() => <Vote updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
             <main>
               <SearchForm /> 

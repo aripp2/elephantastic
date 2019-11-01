@@ -35,7 +35,7 @@ export const postVote = async (imgId, value) => {
   if(!response.ok) {
     console.log(response)
   }
-  const votes = response.json()
+  const votes = await response.json()
   console.log('postVote in apiCalls', votes)
 }
 
@@ -51,6 +51,10 @@ export const getBreeds = async () => {
 }
 
 export const getFavorites = async() => {
+
+}
+
+export const addFavorite = async() => {
 
 }
 
