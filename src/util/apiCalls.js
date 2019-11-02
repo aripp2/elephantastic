@@ -33,7 +33,7 @@ export const postVote = async (imgId, value) => {
 
   const response = await fetch(url, options);
   if(!response.ok) {
-    console.log(response)
+    throw Error('Unable to submit your vote.')  
   }
   const votes = await response.json()
   console.log('postVote in apiCalls', votes)
@@ -51,12 +51,43 @@ export const getBreeds = async () => {
 }
 
 export const getFavorites = async() => {
+  const url = 'https://api.thedogapi.com/v1/favourites';
+  const response = await fetch(url, getOptions)
+  if(!response.ok) {
+    console.log(response)
+  }
+  const favs = await response.json();
+  console.log('favs', favs)
+  return favs;
+}
+
+export const addFavorite = async(imgId) => {
+  const url = 'https://api.thedogapi.com/v1/favourites';
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      image_id: imgId
+    }),
+    headers: {
+      'Content-type': 'application/json',
+      'x-api-key': xKey
+    }
+  } 
+
+  const response = await fetch(url, options)
+  if(!response.ok) {
+    console.log(response)
+  }
+  const addedFav = await response.json()
+  console.log('addedFav', addedFav)
+
 
 }
 
-export const addFavorite = async() => {
+// export const deleteFavorite = async() => {
+//   const url = 
 
-}
+// }
 
 
 

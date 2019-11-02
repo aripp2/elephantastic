@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getRandom } from '../util/apiCalls';
-import { setRandom, throwError } from '../actions';
+import { getRandom, getFavorites, addFavorite } from '../util/apiCalls';
+import { setRandom, throwError, setFavs } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
 import SearchContainer from '../SearchContainer/SearchContainer';
@@ -28,7 +28,14 @@ export class App extends Component {
   }
 
   async componentDidMount() {
-    await this.updateRandom()
+    const { setFavs, throwError } = this.props
+    try {
+      await this.updateRandom()
+      const favs = await getFavorites()
+      setFavs(favs)
+    } catch ({ message }) {
+      throwError(message)
+    }
     // const { setRandom, throwError } = this.props;
     // try {
     //   const random = await getRandom();
@@ -38,6 +45,9 @@ export class App extends Component {
     // }
   }
 
+  updateFavs = async() => {
+
+  }
 
   render() {
     const { errorMsg, randomPup } = this.props;
@@ -49,10 +59,10 @@ export class App extends Component {
           {errorMsg && <h2>{errorMsg}</h2>}
           {randomPup && <Route exact path='/' render={() => <Vote updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
-            <main>
+            <section>
               <SearchForm /> 
               <SearchContainer /> 
-            </main>}/>
+            </section>}/>
           <Route path='/favorites' render={() => 
             <FavoritesContainer />} />
 
@@ -69,7 +79,8 @@ export const mapStateToProps = ({ errorMsg, randomPup }) => ({
 
 export const mapDispatchToProps = dispatch => ({
   setRandom: pup => dispatch(setRandom(pup)),
-  throwError: error => dispatch(throwError(error))
+  throwError: error => dispatch(throwError(error)),
+  setFavs: favs => dispatch(setFavs(favs))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postVote } from '../util/apiCalls';
+import { postVote, addFavorite } from '../util/apiCalls';
 // import { setRandom, throwError } from '../actions';
 
 import './Vote.scss';
@@ -18,7 +18,9 @@ const Vote = ({ randomPup, updateRandom }) => {
         onClick={() => {postVote(id, 0); updateRandom()}}
       >NOT SO MUCH</button>
       <img className='voteImg' src={url} alt='dog'/>
-      <button>Favorite</button>
+      <button
+        onClick={() => addFavorite(id)}
+      >Favorite</button>
 
     </section>
   )

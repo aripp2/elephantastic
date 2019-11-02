@@ -1,4 +1,5 @@
 import React from 'react';
+// import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
 
 import './NavHeader.scss';
@@ -13,5 +14,9 @@ const NavHeader = () => {
     </header>
   )
 }
+
+// export const mapDispatchToProps = dispatch => ({
+//   setFavs: 
+// })
 
 export default NavHeader;

@@ -1,10 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './FavoritesContainer.scss';
 
-const FavoritesContainer = () => {
+const FavoritesContainer = ({ favorites }) => {
+
+  const favs = favorites.map(fav => {
+    return <img key={fav.image_id} src={fav.image.url} alt='dog' />
+  })
   return (
-    <section>Favorites</section>
+    <section>
+      {favs}
+    </section>
   )
 }
 
-export default FavoritesContainer;
+export const mapStateToProps = ({ favorites }) => ({
+  favorites
+})
+
+export default connect(mapStateToProps)(FavoritesContainer);
