@@ -6,9 +6,12 @@ import { postVote, addFavorite } from '../util/apiCalls';
 import './Vote.scss';
 
 
-const Vote = ({ randomPup, updateRandom }) => {
+const Vote = ({ randomPup, favorties, updateRandom }) => {
+  console.log('in vote favs', favorties)
   const { url, id } = randomPup
   console.log(randomPup)
+  // const favStatus = favorties.find(fav => fav.image_id === id)
+  // console.log('status', favStatus)
   return (
     <section>
       <button
@@ -26,12 +29,10 @@ const Vote = ({ randomPup, updateRandom }) => {
   )
 }
 
-export const mapStateToProps = ({ randomPup }) => ({
-  randomPup
+export const mapStateToProps = ({ randomPup, favorties }) => ({
+  randomPup,
+  favorties
 })
 
-// export const mapDispatchToProps = dispatch => ({
-//   setRandom: pup => dispatch(setRandom(pup))
-// })
 
 export default connect(mapStateToProps)(Vote);

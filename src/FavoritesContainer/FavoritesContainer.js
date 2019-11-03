@@ -5,7 +5,14 @@ import './FavoritesContainer.scss';
 const FavoritesContainer = ({ favorites }) => {
 
   const favs = favorites.map(fav => {
-    return <img key={fav.image_id} src={fav.image.url} alt='dog' />
+    return (
+      <div key={fav.image_id}>
+        <img 
+          id={fav.id} 
+          src={fav.image.url} 
+          alt='dog' />
+      </div>
+     ) 
   })
   return (
     <section>

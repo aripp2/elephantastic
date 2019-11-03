@@ -8,6 +8,11 @@ export const throwError = error => ({
   error
 })
 
+export const updateLoading = bool => ({
+  type: 'UPDATE_LOADING',
+  bool
+})
+
 export const setFavs = favs => ({
   type: 'SET_FAVS',
   favs

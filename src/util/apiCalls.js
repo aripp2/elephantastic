@@ -76,18 +76,30 @@ export const addFavorite = async(imgId) => {
 
   const response = await fetch(url, options)
   if(!response.ok) {
-    console.log(response)
+    throw Error('Unable to add favorite.')
   }
   const addedFav = await response.json()
   console.log('addedFav', addedFav)
-
+  return getFavorites()
 
 }
 
-// export const deleteFavorite = async() => {
-//   const url = 
+export const deleteFavorite = async(favId) => {
+  const url = `https://api.thedogapi.com/v1/favourites/{favId}`
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      'x-api-key': xKey
+    }
+  }
+  const response = await fetch(url, options)
+  if(!response.ok) {
+    console.log(response)
+  }
 
-// }
+  return getFavorites();
+}
 
 
 

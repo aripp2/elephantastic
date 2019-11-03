@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getRandom, getFavorites, addFavorite } from '../util/apiCalls';
-import { setRandom, throwError, setFavs } from '../actions';
+import { setRandom, throwError, updateLoading, setFavs } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
 import SearchContainer from '../SearchContainer/SearchContainer';
@@ -18,46 +18,46 @@ export class App extends Component {
   }
 
   updateRandom = async() => {
-    const { setRandom, throwError } = this.props;
+    const { setRandom, throwError, updateLoading } = this.props;
     try {
       const random = await getRandom();
+      console.log(random)
       setRandom(random)
+      updateLoading(false)
     } catch({ message }) {
+      updateLoading(false)
       throwError(message)
     }
   }
 
   async componentDidMount() {
-    const { setFavs, throwError } = this.props
+    const { setFavs, throwError, updateLoading } = this.props
     try {
       await this.updateRandom()
       const favs = await getFavorites()
+      console.log('in componentDidMount', favs)
       setFavs(favs)
+      updateLoading(false)
     } catch ({ message }) {
+      updateLoading(false)
       throwError(message)
     }
-    // const { setRandom, throwError } = this.props;
-    // try {
-    //   const random = await getRandom();
-    //   setRandom(random)
-    // } catch({ message }) {
-    //   throwError(message)
-    // }
   }
 
-  updateFavs = async() => {
+  updateFavs = async(id) => {
 
   }
 
   render() {
-    const { errorMsg, randomPup } = this.props;
-
+    const { errorMsg, isLoading, randomPup, favorites } = this.props;
+    console.log('in app render', favorites)
     return (
       <div className="App">
         <NavHeader />
         <main>
           {errorMsg && <h2>{errorMsg}</h2>}
-          {randomPup && <Route exact path='/' render={() => <Vote updateRandom={this.updateRandom}/>}/>}
+          {isLoading && <h2>Loading...</h2>}
+          {!isLoading && <Route exact path='/' render={() => <Vote updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
             <section>
               <SearchForm /> 
@@ -72,15 +72,18 @@ export class App extends Component {
   }
 }
 
-export const mapStateToProps = ({ errorMsg, randomPup }) => ({
+export const mapStateToProps = ({ errorMsg, isLoading, randomPup, favorites }) => ({
   errorMsg,
-  randomPup
+  isLoading,
+  randomPup,
+  favorites
 })
 
 export const mapDispatchToProps = dispatch => ({
   setRandom: pup => dispatch(setRandom(pup)),
   throwError: error => dispatch(throwError(error)),
-  setFavs: favs => dispatch(setFavs(favs))
+  setFavs: favs => dispatch(setFavs(favs)),
+  updateLoading: bool => dispatch(updateLoading(bool))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
