@@ -1,17 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { postVote, addFavorite } from '../util/apiCalls';
-// import { setRandom, throwError } from '../actions';
-
 import './Vote.scss';
 
 
-const Vote = ({ randomPup, favorties, updateRandom }) => {
-  console.log('in vote favs', favorties)
+const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
   const { url, id } = randomPup
-  console.log(randomPup)
-  // const favStatus = favorties.find(fav => fav.image_id === id)
-  // console.log('status', favStatus)
+  const ids = favorites.map(fav => fav.image_id)
+  const favStatus = ids.includes(id)
+  let favId = null;
+  if (favStatus) {
+    favId = favorites.reduce((acc, fav) => {
+      if(fav.image_id === id) {
+        acc += fav.id
+      }
+      return acc
+    }, 0)
+  }
+  const buttonRole = favStatus ? 'Delete Favorite' : 'Add Favorite';
+  console.log('favId', favId)
   return (
     <section>
       <button
@@ -22,16 +29,16 @@ const Vote = ({ randomPup, favorties, updateRandom }) => {
       >NOT SO MUCH</button>
       <img className='voteImg' src={url} alt='dog'/>
       <button
-        onClick={() => addFavorite(id)}
-      >Favorite</button>
+        onClick={() => updateFavs(id, favStatus, favId)}
+      >{buttonRole}</button>
 
     </section>
   )
 }
 
-export const mapStateToProps = ({ randomPup, favorties }) => ({
+export const mapStateToProps = ({ randomPup, favorites }) => ({
   randomPup,
-  favorties
+  favorites
 })
 
 

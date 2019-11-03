@@ -78,9 +78,9 @@ export const addFavorite = async(imgId) => {
   if(!response.ok) {
     throw Error('Unable to add favorite.')
   }
-  const addedFav = await response.json()
-  console.log('addedFav', addedFav)
-  return getFavorites()
+  // const addedFav = await response.json()
+  // console.log('addedFav', addedFav)
+  // return getFavorites()
 
 }
 
@@ -98,7 +98,7 @@ export const deleteFavorite = async(favId) => {
     console.log(response)
   }
 
-  return getFavorites();
+  // return getFavorites();
 }
 
 

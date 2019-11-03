@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getRandom, getFavorites, addFavorite } from '../util/apiCalls';
+import { getRandom, getFavorites, addFavorite, deleteFavorite } from '../util/apiCalls';
 import { setRandom, throwError, updateLoading, setFavs } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
@@ -33,10 +33,10 @@ export class App extends Component {
   async componentDidMount() {
     const { setFavs, throwError, updateLoading } = this.props
     try {
-      await this.updateRandom()
       const favs = await getFavorites()
       console.log('in componentDidMount', favs)
       setFavs(favs)
+      await this.updateRandom()
       updateLoading(false)
     } catch ({ message }) {
       updateLoading(false)
@@ -44,8 +44,22 @@ export class App extends Component {
     }
   }
 
-  updateFavs = async(id) => {
-
+  updateFavs = async(id, status, favId) => {
+    const { setFavs, throwError, updateLoading } = this.props;
+    updateLoading(true)
+    try {
+      if (status) {
+        await deleteFavorite(favId)
+      } else {
+        await addFavorite(id)
+      }
+        const favs = await getFavorites()
+        setFavs(favs)
+        updateLoading(false)
+    } catch ({ message }){
+      updateLoading(false)
+      throwError(message)
+    }
   }
 
   render() {
@@ -57,7 +71,7 @@ export class App extends Component {
         <main>
           {errorMsg && <h2>{errorMsg}</h2>}
           {isLoading && <h2>Loading...</h2>}
-          {!isLoading && <Route exact path='/' render={() => <Vote updateRandom={this.updateRandom}/>}/>}
+          {!isLoading && <Route exact path='/' render={() => <Vote updateFavs={this.updateFavs} updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
             <section>
               <SearchForm /> 
