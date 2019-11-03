@@ -21,7 +21,6 @@ export class App extends Component {
     const { setRandom, throwError, updateLoading } = this.props;
     try {
       const random = await getRandom();
-      console.log(random)
       setRandom(random)
       updateLoading(false)
     } catch({ message }) {
@@ -34,7 +33,6 @@ export class App extends Component {
     const { setFavs, throwError, updateLoading } = this.props
     try {
       const favs = await getFavorites()
-      console.log('in componentDidMount', favs)
       setFavs(favs)
       await this.updateRandom()
       updateLoading(false)
@@ -64,7 +62,6 @@ export class App extends Component {
 
   render() {
     const { errorMsg, isLoading, randomPup, favorites } = this.props;
-    console.log('in app render', favorites)
     return (
       <div className="App">
         <NavHeader />
@@ -78,7 +75,7 @@ export class App extends Component {
               <SearchContainer /> 
             </section>}/>
           <Route path='/favorites' render={() => 
-            <FavoritesContainer />} />
+            <FavoritesContainer updateFavs={this.updateFavs}/>} />
 
         </main>
       </div>

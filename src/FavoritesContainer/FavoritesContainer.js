@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './FavoritesContainer.scss';
 
-const FavoritesContainer = ({ favorites }) => {
+const FavoritesContainer = ({ favorites, updateFavs }) => {
 
   const favs = favorites.map(fav => {
     return (
@@ -11,6 +11,9 @@ const FavoritesContainer = ({ favorites }) => {
           id={fav.id} 
           src={fav.image.url} 
           alt='dog' />
+          <button
+            onClick={() => updateFavs(fav.image_id, true, fav.id)}
+          >Delete Favorite</button>
       </div>
      ) 
   })
