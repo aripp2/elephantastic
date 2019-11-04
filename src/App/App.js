@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getRandom, getFavorites, addFavorite, deleteFavorite } from '../util/apiCalls';
-import { setRandom, throwError, updateLoading, setFavs } from '../actions';
+import { getRandom, getFavorites, addFavorite, deleteFavorite, getBreeds } from '../util/apiCalls';
+import { setRandom, throwError, updateLoading, setFavs, setBreeds } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
-import SearchForm from '../SearchForm/SearchForm';
+// import SearchForm from '../SearchForm/SearchForm';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import Vote from '../Vote/Vote';
@@ -30,11 +30,13 @@ export class App extends Component {
   }
 
   async componentDidMount() {
-    const { setFavs, throwError, updateLoading } = this.props
+    const { setFavs, throwError, updateLoading, setBreeds } = this.props
     try {
       const favs = await getFavorites()
       setFavs(favs)
       await this.updateRandom()
+      const breeds = await getBreeds()
+      setBreeds(breeds)
       updateLoading(false)
     } catch ({ message }) {
       updateLoading(false)
@@ -70,10 +72,7 @@ export class App extends Component {
           {isLoading && <h2>Loading...</h2>}
           {!isLoading && <Route exact path='/' render={() => <Vote updateFavs={this.updateFavs} updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
-            <section>
-              <SearchForm /> 
-              <SearchContainer /> 
-            </section>}/>
+              <SearchContainer />}/>
           <Route path='/favorites' render={() => 
             <FavoritesContainer updateFavs={this.updateFavs}/>} />
 
@@ -94,7 +93,8 @@ export const mapDispatchToProps = dispatch => ({
   setRandom: pup => dispatch(setRandom(pup)),
   throwError: error => dispatch(throwError(error)),
   setFavs: favs => dispatch(setFavs(favs)),
-  updateLoading: bool => dispatch(updateLoading(bool))
+  updateLoading: bool => dispatch(updateLoading(bool)),
+  setBreeds: breeds => dispatch(setBreeds(breeds))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

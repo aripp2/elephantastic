@@ -45,8 +45,8 @@ export const getBreeds = async () => {
   if(!response.ok) {
     console.log(response)
   }
-  const breeds = response.json();
-  console.log('getBreeds in apiCalls', breeds)
+  const breeds = await response.json();
+  // console.log('getBreeds in apiCalls', breeds)
   return breeds;
 }
 

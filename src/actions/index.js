@@ -17,3 +17,8 @@ export const setFavs = favs => ({
   type: 'SET_FAVS',
   favs
 })
+
+export const setBreeds = breeds => ({
+  type: 'SET_BREEDS',
+  breeds
+})
