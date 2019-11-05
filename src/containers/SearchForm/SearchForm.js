@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getBreedImages } from '../util/apiCalls';
-import { throwError, updateLoading } from '../actions';
-import SearchContainer from '../SearchContainer/SearchContainer';
+import { getBreedImages } from '../../util/apiCalls';
+import { throwError, updateLoading } from '../../actions';
+import SearchContainer from '../../components/SearchContainer/SearchContainer';
 import './SearchForm.scss';
 
 export class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      value: '',
       selectedBreed: null,
       breedImages: []
     }
@@ -27,7 +26,6 @@ export class SearchForm extends Component {
     updateLoading(true);
     try {
       const breedImages = await getBreedImages(id)
-      console.log(breedImages)
       this.setState({ breedImages })
       updateLoading(false)
     } catch ({ message }){

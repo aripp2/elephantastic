@@ -35,7 +35,6 @@ export const postVote = async (imgId, value) => {
   if(!response.ok) {
     throw Error('Unable to submit your vote.')  
   }
-  // const votes = await response.json()
 }
 
 export const getBreeds = async () => {

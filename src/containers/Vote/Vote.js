@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postVote } from '../util/apiCalls';
+import { postVote } from '../../util/apiCalls';
 import './Vote.scss';
 
 

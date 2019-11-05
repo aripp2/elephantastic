@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getRandom, getFavorites, addFavorite, deleteFavorite, getBreeds } from '../util/apiCalls';
-import { setRandom, throwError, updateLoading, setFavs, setBreeds } from '../actions';
-import NavHeader from '../NavHeader/NavHeader';
+import { getRandom, getFavorites, addFavorite, deleteFavorite, getBreeds } from '../../util/apiCalls';
+import { setRandom, throwError, updateLoading, setFavs, setBreeds } from '../../actions';
+import NavHeader from '../../components/NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
-// import SearchContainer from '../SearchContainer/SearchContainer';
 import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import Vote from '../Vote/Vote';
 import './App.scss';
@@ -64,8 +63,7 @@ export class App extends Component {
   }
 
   render() {
-    const { errorMsg, isLoading, randomPup, favorites } = this.props;
-    console.log(randomPup)
+    const { errorMsg, isLoading } = this.props;
     return (
       <div className="App">
         <NavHeader />
@@ -84,11 +82,9 @@ export class App extends Component {
   }
 }
 
-export const mapStateToProps = ({ errorMsg, isLoading, randomPup, favorites }) => ({
+export const mapStateToProps = ({ errorMsg, isLoading }) => ({
   errorMsg,
-  isLoading,
-  randomPup,
-  favorites
+  isLoading
 })
 
 export const mapDispatchToProps = dispatch => ({
