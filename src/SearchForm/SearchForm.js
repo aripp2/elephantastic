@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getBreedImages } from '../util/apiCalls';
+// import SearchContainer from './SearchContainer/SearchContainer';
 import './SearchForm.scss';
 
 export class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      selectedBreed: null
+      selectedBreed: null,
+      breedImages: []
     }
   }
 
@@ -20,24 +22,33 @@ export class SearchForm extends Component {
 
   getSelectedImages = async(id) => {
     try {
-      const imgs = await getBreedImages(id)
-      console.log(imgs)
+      const breedImages = await getBreedImages(id)
+      console.log(breedImages)
+      this.setState({ breedImages })
     } catch ({ message }){
       console.log(message)
     }
   }
 
   render() {
-    const { selectedBreed } = this.state
-    console.log(selectedBreed)
+    const { selectedBreed, breedImages } = this.state
     const { breeds } = this.props
-    console.log(breeds)
     const breedList = breeds.map(breed => {
       return <option 
         key={breed.id} 
         value={breed.name}
         >{breed.name}</option>
     })
+
+    const selectedBreedImages = breedImages.map(image => {
+      return <img 
+        key={image.id}
+        id={image.id}
+        src={image.url}
+        alt='dog'
+      />
+    })
+
     return (
       <div>
         <aside>
@@ -59,10 +70,10 @@ export class SearchForm extends Component {
               <p>Average Weight: {selectedBreed.weight.imperial} lbs</p>
               <p>Average Life Span: {selectedBreed.life_span}</p>
               <p>{selectedBreed.temperament}</p>
+              { selectedBreedImages }
           </article>}
         </aside>
         <section>
-          
         </section>
       </div>
     )

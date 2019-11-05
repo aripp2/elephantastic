@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './FavoritesContainer.scss';
 
 const FavoritesContainer = ({ favorites, updateFavs }) => {
-
+  console.log(favorites)
   const favs = favorites.map(fav => {
     return (
       <div key={fav.image_id}>

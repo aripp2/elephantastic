@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postVote, addFavorite } from '../util/apiCalls';
+import { postVote } from '../util/apiCalls';
 import './Vote.scss';
 
 
@@ -18,7 +18,6 @@ const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
     }, 0)
   }
   const buttonRole = favStatus ? 'Delete Favorite' : 'Add Favorite';
-  console.log('favId', favId)
   return (
     <section>
       <button

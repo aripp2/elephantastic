@@ -2,7 +2,8 @@ import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import './SearchContainer.scss';
 
-const SearchContainer = () => {
+const SearchContainer = ({ breedImages }) => {
+  
   return (
     <div>
       <SearchForm />

@@ -1,5 +1,5 @@
 {
-  "name": "elephantastic",
+  "name": "puppylove",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,7 +37,8 @@
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1"
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3"
   },
   "jest": {
     "snapshotSerializers": [

@@ -5,9 +5,10 @@ const getOptions = {
       'x-api-key': xKey
     }
   };
+const baseUrl = 'https://api.thedogapi.com/v1';
 
 export const getRandom = async() => {
-  const url = 'https://api.thedogapi.com/v1/images/search';
+  const url = `${baseUrl}/images/search`;
   const response = await fetch(url, getOptions)
   if(!response.ok) {
     throw Error('There was an issue getting a pup, try again later.')
@@ -18,7 +19,7 @@ export const getRandom = async() => {
 }
 
 export const postVote = async (imgId, value) => {
-  const url = 'https://api.thedogapi.com/v1/votes';
+  const url = `${baseUrl}/votes`;
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -40,7 +41,7 @@ export const postVote = async (imgId, value) => {
 }
 
 export const getBreeds = async () => {
-  const url = 'https://api.thedogapi.com/v1/breeds';
+  const url = `${baseUrl}/breeds`;
   const response = await fetch(url, getOptions);
   if(!response.ok) {
     console.log(response)
@@ -51,7 +52,7 @@ export const getBreeds = async () => {
 }
 
 export const getFavorites = async() => {
-  const url = 'https://api.thedogapi.com/v1/favourites';
+  const url = `${baseUrl}/favourites`;
   const response = await fetch(url, getOptions)
   if(!response.ok) {
     console.log(response)
@@ -62,7 +63,7 @@ export const getFavorites = async() => {
 }
 
 export const addFavorite = async(imgId) => {
-  const url = 'https://api.thedogapi.com/v1/favourites';
+  const url = `${baseUrl}/favourites`;
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -81,7 +82,7 @@ export const addFavorite = async(imgId) => {
 }
 
 export const deleteFavorite = async(favId) => {
-  const url = `https://api.thedogapi.com/v1/favourites/${favId}`
+  const url = `${baseUrl}/favourites/${favId}`
   const options = {
     method: 'DELETE',
     headers: {
@@ -96,7 +97,9 @@ export const deleteFavorite = async(favId) => {
 }
 
 export const getBreedImages = async(breedId) => {
-  const url = `https://api.TheDogAPI.com/images/search?breed_id=${breedId}`
+  const limit = '4';
+  const order = 'RANDOM';
+  const url = `${baseUrl}/images/search?breed_id=${breedId}&limit=${limit}&order=${order}`
   const response = await fetch(url, getOptions)
   if(!response.ok) {
     console.log('selected breed response', response)
