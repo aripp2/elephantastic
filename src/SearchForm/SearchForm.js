@@ -11,22 +11,24 @@ export class SearchForm extends Component {
   }
 
   changeHandler = (e) => {
-    this.setState({ selectedBreed: e.target.value })
+    const { breeds } = this.props
+    const selected = breeds.find(breed => breed.name === e.target.value)
+    this.setState({ selectedBreed: selected })
   }
 
 
 
   render() {
-    console.log(this.state.selectedBreed)
-
+    const { selectedBreed } = this.state
+    console.log(selectedBreed)
     const { breeds } = this.props
+    console.log(breeds)
     const breedList = breeds.map(breed => {
       return <option 
         key={breed.id} 
         value={breed.name}
         >{breed.name}</option>
     })
-    console.log(breedList)
     return (
       <aside>
         <form>
@@ -38,6 +40,17 @@ export class SearchForm extends Component {
             { breedList }
           </select>
         </form>
+        {selectedBreed && 
+          <article>
+            <h4>{selectedBreed.name}</h4>
+            <p>Breed Group: {selectedBreed.breed_group}</p>
+            <p>Bred For: {selectedBreed.bred_for}</p>
+            <p>Average Height: {selectedBreed.height.imperial} in</p>
+            <p>Average Weight: {selectedBreed.weight.imperial} lbs</p>
+            <p>Average Life Span: {selectedBreed.life_span}</p>
+            <p>{selectedBreed.temperament}</p>
+
+          </article>}
       </aside>
     )
   }
