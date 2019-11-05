@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getBreedImages } from '../util/apiCalls';
-// import SearchContainer from './SearchContainer/SearchContainer';
+import { throwError, updateLoading } from '../actions';
+import SearchContainer from '../SearchContainer/SearchContainer';
 import './SearchForm.scss';
 
 export class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
+      value: '',
       selectedBreed: null,
       breedImages: []
     }
@@ -21,17 +23,22 @@ export class SearchForm extends Component {
   }
 
   getSelectedImages = async(id) => {
+    const { throwError, updateLoading } = this.props;
+    updateLoading(true);
     try {
       const breedImages = await getBreedImages(id)
       console.log(breedImages)
       this.setState({ breedImages })
+      updateLoading(false)
     } catch ({ message }){
-      console.log(message)
+      updateLoading(false)
+      throwError(message)
     }
   }
 
   render() {
-    const { selectedBreed, breedImages } = this.state
+    const { selectedBreed, breedImages } = this.state;
+    const { errorMsg, isLoading } = this.props;
     const { breeds } = this.props
     const breedList = breeds.map(breed => {
       return <option 
@@ -40,22 +47,13 @@ export class SearchForm extends Component {
         >{breed.name}</option>
     })
 
-    const selectedBreedImages = breedImages.map(image => {
-      return <img 
-        key={image.id}
-        id={image.id}
-        src={image.url}
-        alt='dog'
-      />
-    })
-
     return (
       <div>
         <aside>
           <form>
             <h3>Choose a Breed:</h3>
             <select
-              value={this.state.selectedBreed}
+              value={selectedBreed}
               onChange={this.changeHandler}
             >
               { breedList }
@@ -70,19 +68,26 @@ export class SearchForm extends Component {
               <p>Average Weight: {selectedBreed.weight.imperial} lbs</p>
               <p>Average Life Span: {selectedBreed.life_span}</p>
               <p>{selectedBreed.temperament}</p>
-              { selectedBreedImages }
           </article>}
         </aside>
-        <section>
-        </section>
+        {errorMsg && <h2>{errorMsg}</h2>}
+        {isLoading && <img src='https://cdn.dribbble.com/users/5976/screenshots/3930514/happy_dog_puppy_tongue_logo_design_symbol_by_alex_tass.gif' alt='loading gif'/>}
+        <SearchContainer breedImages={breedImages}/>
       </div>
     )
   }
 }
 
-export const mapStateToProps = ({ breeds, favorites }) => ({
+export const mapStateToProps = ({ breeds, favorites, errorMsg, isLoading }) => ({
   breeds, 
-  favorites
+  favorites,
+  errorMsg,
+  isLoading
+});
+
+export const mapDispatchToProps = dispatch => ({
+  throwError: error => dispatch(throwError(error)),
+  updateLoading: bool => dispatch(updateLoading(bool))
 })
 
-export default connect(mapStateToProps)(SearchForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

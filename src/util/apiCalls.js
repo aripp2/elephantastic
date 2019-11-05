@@ -15,7 +15,6 @@ export const getRandom = async() => {
   }
   const random = await response.json();
   return random[0]
-
 }
 
 export const postVote = async (imgId, value) => {
@@ -36,8 +35,7 @@ export const postVote = async (imgId, value) => {
   if(!response.ok) {
     throw Error('Unable to submit your vote.')  
   }
-  const votes = await response.json()
-  console.log('postVote in apiCalls', votes)
+  // const votes = await response.json()
 }
 
 export const getBreeds = async () => {
@@ -47,7 +45,6 @@ export const getBreeds = async () => {
     console.log(response)
   }
   const breeds = await response.json();
-  // console.log('getBreeds in apiCalls', breeds)
   return breeds;
 }
 
@@ -58,7 +55,6 @@ export const getFavorites = async() => {
     console.log(response)
   }
   const favs = await response.json();
-  console.log('favs', favs)
   return favs;
 }
 
@@ -99,14 +95,13 @@ export const deleteFavorite = async(favId) => {
 export const getBreedImages = async(breedId) => {
   const limit = '4';
   const order = 'RANDOM';
-  const url = `${baseUrl}/images/search?breed_id=${breedId}&limit=${limit}&order=${order}`
+  const url = `${baseUrl}/images/search?breed_id=${breedId}&limit=${limit}&order=${order}`;
   const response = await fetch(url, getOptions)
   if(!response.ok) {
-    console.log('selected breed response', response)
+    throw Error('Unable to get the images. Try again later.')
   }
   const selected = await response.json()
-  console.log('selected in api', selected)
-  return selected
+  return selected;
 }
 
 

@@ -5,7 +5,7 @@ import { getRandom, getFavorites, addFavorite, deleteFavorite, getBreeds } from 
 import { setRandom, throwError, updateLoading, setFavs, setBreeds } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
 import SearchForm from '../SearchForm/SearchForm';
-import SearchContainer from '../SearchContainer/SearchContainer';
+// import SearchContainer from '../SearchContainer/SearchContainer';
 import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import Vote from '../Vote/Vote';
 import './App.scss';
@@ -19,6 +19,7 @@ export class App extends Component {
 
   updateRandom = async() => {
     const { setRandom, throwError, updateLoading } = this.props;
+    updateLoading(true)
     try {
       const random = await getRandom();
       setRandom(random)
@@ -70,7 +71,7 @@ export class App extends Component {
         <NavHeader />
         <main>
           {errorMsg && <h2>{errorMsg}</h2>}
-          {isLoading && <h2>Loading...</h2>}
+          {isLoading && <img src='https://cdn.dribbble.com/users/5976/screenshots/3930514/happy_dog_puppy_tongue_logo_design_symbol_by_alex_tass.gif' alt='loading gif'/>}
           {!isLoading && <Route exact path='/' render={() => <Vote updateFavs={this.updateFavs} updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
               <SearchForm />}/>

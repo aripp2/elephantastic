@@ -1,16 +1,20 @@
 import React from 'react';
-import SearchForm from '../SearchForm/SearchForm';
 import './SearchContainer.scss';
 
 const SearchContainer = ({ breedImages }) => {
-  
+  const selectedBreedImages = breedImages.map(image => {
+    return <img 
+      key={image.id}
+      id={image.id}
+      src={image.url}
+      alt='dog'
+    />
+  })
   return (
-    <div>
-      <SearchForm />
-      <section>
-        Choose a breed to see images. 
+      <section className='searchImgs'>
+        {breedImages.length === 0 && <h2 className='selectPrompt'>Select a breed from the left to see images.</h2>}
+        { selectedBreedImages } 
       </section>
-    </div>
   )
 }
 
