@@ -41,7 +41,7 @@ export const getBreeds = async () => {
   const url = `${baseUrl}/breeds`;
   const response = await fetch(url, getOptions);
   if(!response.ok) {
-    console.log(response)
+    throw Error('Unable to get the breeds.')
   }
   const breeds = await response.json();
   return breeds;
@@ -51,7 +51,7 @@ export const getFavorites = async() => {
   const url = `${baseUrl}/favourites`;
   const response = await fetch(url, getOptions)
   if(!response.ok) {
-    console.log(response)
+    throw Error('Unable to get your favorites right now.')
   }
   const favs = await response.json();
   return favs;
@@ -100,6 +100,7 @@ export const getBreedImages = async(breedId) => {
     throw Error('Unable to get the images. Try again later.')
   }
   const selected = await response.json()
+  // console.log(selected)
   return selected;
 }
 

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchContainer should match the snapshot 1`] = `
+<section
+  className="searchImgs"
+>
+  <img
+    alt="dog"
+    id="BbMFS3bU-"
+    key="BbMFS3bU-"
+    src="https://cdn2.thedogapi.com/images/BbMFS3bU-.jpg"
+  />
+  <img
+    alt="dog"
+    id="8ogZCsDcp"
+    key="8ogZCsDcp"
+    src="https://cdn2.thedogapi.com/images/8ogZCsDcp.jpg"
+  />
+</section>
+`;
+
+exports[`SearchContainer should render a message if breedImages is empty 1`] = `
+<section
+  className="searchImgs"
+>
+  <h2
+    className="selectPrompt"
+  >
+    Select a breed from the left to see images.
+  </h2>
+</section>
+`;
