@@ -95,7 +95,7 @@ export const deleteFavorite = async(favId) => {
   }
 }
 
-export const getSelectedBreed = async(breedId) => {
+export const getBreedImages = async(breedId) => {
   const url = `https://api.TheDogAPI.com/images/search?breed_id=${breedId}`
   const response = await fetch(url, getOptions)
   if(!response.ok) {

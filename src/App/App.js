@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getRandom, getFavorites, addFavorite, deleteFavorite, getBreeds } from '../util/apiCalls';
 import { setRandom, throwError, updateLoading, setFavs, setBreeds } from '../actions';
 import NavHeader from '../NavHeader/NavHeader';
-// import SearchForm from '../SearchForm/SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import Vote from '../Vote/Vote';
@@ -64,6 +64,7 @@ export class App extends Component {
 
   render() {
     const { errorMsg, isLoading, randomPup, favorites } = this.props;
+    console.log(randomPup)
     return (
       <div className="App">
         <NavHeader />
@@ -72,7 +73,7 @@ export class App extends Component {
           {isLoading && <h2>Loading...</h2>}
           {!isLoading && <Route exact path='/' render={() => <Vote updateFavs={this.updateFavs} updateRandom={this.updateRandom}/>}/>}
           <Route path='/search' render={() => 
-              <SearchContainer />}/>
+              <SearchForm />}/>
           <Route path='/favorites' render={() => 
             <FavoritesContainer updateFavs={this.updateFavs}/>} />
 
