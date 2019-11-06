@@ -6,12 +6,14 @@ exports[`SearchContainer should match the snapshot 1`] = `
 >
   <img
     alt="dog"
+    className="search-img"
     id="BbMFS3bU-"
     key="BbMFS3bU-"
     src="https://cdn2.thedogapi.com/images/BbMFS3bU-.jpg"
   />
   <img
     alt="dog"
+    className="search-img"
     id="8ogZCsDcp"
     key="8ogZCsDcp"
     src="https://cdn2.thedogapi.com/images/8ogZCsDcp.jpg"

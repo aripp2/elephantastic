@@ -6,16 +6,23 @@ exports[`NavHeader should match the snapshot 1`] = `
     PuppyLove
   </h1>
   <NavLink
+    activeClassName="selected"
+    className="nav-link"
+    exact={true}
     to="/"
   >
     VOTE
   </NavLink>
   <NavLink
+    activeClassName="selected"
+    className="nav-link"
     to="/search"
   >
     SEARCH
   </NavLink>
   <NavLink
+    activeClassName="selected"
+    className="nav-link"
     to="/favorites"
   >
     FAVORITES
