@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './FavoritesContainer.scss';
+import PropTypes from 'prop-types';
 
 export const FavoritesContainer = ({ favorites, updateFavs }) => {
 
@@ -33,3 +34,8 @@ export const mapStateToProps = ({ favorites }) => ({
 })
 
 export default connect(mapStateToProps)(FavoritesContainer);
+
+FavoritesContainer.propTypes = {
+  favorites = PropTypes.array,
+  updateFavs = PropTypes.func.isRequired
+}

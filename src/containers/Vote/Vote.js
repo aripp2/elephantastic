@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { postVote } from '../../util/apiCalls';
 import './Vote.scss';
-
+import PropTypes from 'prop-types';
 
 export const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
   const { url, id } = randomPup
@@ -47,3 +47,10 @@ export const mapStateToProps = ({ randomPup, favorites }) => ({
 
 
 export default connect(mapStateToProps)(Vote);
+
+Vote.propTypes = {
+  randomPup = PropTypes.object.isRequired,
+  favorites = PropTypes.array,
+  updateRandom = PropTypes.func.isRequired,
+  updateFavs = PropTypes.func.isRequired
+}

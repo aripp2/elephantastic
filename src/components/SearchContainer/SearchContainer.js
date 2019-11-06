@@ -1,5 +1,7 @@
 import React from 'react';
 import './SearchContainer.scss';
+import PropTypes from 'prop-types';
+
 
 const SearchContainer = ({ breedImages }) => {
   const selectedBreedImages = breedImages.map(image => {
@@ -20,3 +22,7 @@ const SearchContainer = ({ breedImages }) => {
 }
 
 export default SearchContainer;
+
+SearchContainer.propTypes = {
+  breedImages: PropTypes.array
+}
