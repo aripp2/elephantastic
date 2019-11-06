@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vote should match the snapshot 1`] = `
+<section>
+  <button
+    className="vote-btn"
+    onClick={[Function]}
+  >
+    LOVE IT!
+  </button>
+  <button
+    className="vote-btn"
+    onClick={[Function]}
+  >
+    NOT SO MUCH
+  </button>
+  <img
+    alt="dog"
+    className="voteImg"
+    src="https://cdn2.thedogapi.com/images/anIClTXyD.jpg"
+  />
+  <button
+    className="fav-btn"
+    onClick={[Function]}
+  >
+    Add Favorite
+  </button>
+</section>
+`;

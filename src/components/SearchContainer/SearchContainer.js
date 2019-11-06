@@ -2,7 +2,6 @@ import React from 'react';
 import './SearchContainer.scss';
 
 const SearchContainer = ({ breedImages }) => {
-  // console.log(breedImages)
   const selectedBreedImages = breedImages.map(image => {
     return <img 
       key={image.id}

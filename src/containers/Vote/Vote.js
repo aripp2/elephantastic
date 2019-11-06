@@ -4,7 +4,7 @@ import { postVote } from '../../util/apiCalls';
 import './Vote.scss';
 
 
-const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
+export const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
   const { url, id } = randomPup
   const ids = favorites.map(fav => fav.image_id)
   const favStatus = ids.includes(id)
@@ -21,13 +21,16 @@ const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
   return (
     <section>
       <button
+        className='vote-btn'
         onClick={() => {postVote(id, 1); updateRandom()}}
       >LOVE IT!</button>
       <button
+        className='vote-btn'
         onClick={() => {postVote(id, 0); updateRandom()}}
       >NOT SO MUCH</button>
       <img className='voteImg' src={url} alt='dog'/>
       <button
+        className='fav-btn'
         onClick={() => updateFavs(id, favStatus, favId)}
       >{buttonRole}</button>
 
