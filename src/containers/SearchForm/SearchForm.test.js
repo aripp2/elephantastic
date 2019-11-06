@@ -44,7 +44,7 @@ const mockBreeds = [
     }
   ];
   const mockError = '';
-  // getBreedImages.mockImplementation(() => Promise.resolve(mockBreedImages));
+  getBreedImages.mockImplementation(() => Promise.resolve(mockBreedImages));
 
 describe('SearchForm', () => {
   let wrapper;
@@ -54,6 +54,8 @@ describe('SearchForm', () => {
       breeds={mockBreeds}
       errorMsg={mockError}
       isLoading={false}
+      throwError={jest.fn()}
+      updateLoading={jest.fn()}
       />)
   });
 
@@ -63,8 +65,8 @@ describe('SearchForm', () => {
 
   it('should update state when change happens', () => {
     const mockEvent = { target: { value: 'Alaskan Malamute'}}
-    wrapper.instance().changeHandler(mockEvent);
-    expect(wrapper.state('selectedBreed')).toEqual(mockBreeds[1])
+    wrapper.instance().changeHandler(mockEvent) 
+    expect(wrapper.state('selectedBreed')).toEqual(mockBreeds[1]);
   });
 
   it('should call getSelectedImages when changeHandler is called', () => {
@@ -78,6 +80,11 @@ describe('SearchForm', () => {
     wrapper.instance().getSelectedImages(9);
     expect(getBreedImages).toHaveBeenCalled();
   });
+
+  // it('should catch an error if response fails', () => {
+  //   getBreedImages.mockImplementation(() => Promise.reject({message: 'Fail'}))
+  //   expect(throwError()).toHaveBeenCalledWith('Fail')
+  // })
 
 });
 
@@ -99,5 +106,27 @@ describe('mapStateToProps', () => {
     const mappedProps = mapStateToProps(mockState);
     expect(mappedProps).toEqual(expected);
   });
+});
+
+describe('mapDispatchToProps', () => {
+
+  const mockDispatch = jest.fn();
+
+  it('calls dispatch with a throwError action', () => {
+    const mockError = 'An Error';
+    const actionToDispatch = throwError(mockError);
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.throwError(mockError);
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
+  it('calls dispatch with a updateLoading action', () => {
+    const mockLoading = true;
+    const actionToDispatch = updateLoading(mockLoading);
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.updateLoading(mockLoading);
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
 });
 
