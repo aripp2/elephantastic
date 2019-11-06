@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchForm should match the snapshot 1`] = `
+<div>
+  <aside>
+    <form>
+      <h3>
+        Choose a Breed:
+      </h3>
+      <select
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          key="8"
+          value="Alaskan Husky"
+        >
+          Alaskan Husky
+        </option>
+        <option
+          key="9"
+          value="Alaskan Malamute"
+        >
+          Alaskan Malamute
+        </option>
+      </select>
+    </form>
+  </aside>
+  <SearchContainer
+    breedImages={Array []}
+  />
+</div>
+`;

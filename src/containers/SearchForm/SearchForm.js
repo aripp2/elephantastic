@@ -9,7 +9,7 @@ export class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      selectedBreed: null,
+      selectedBreed: '',
       breedImages: []
     }
   }
@@ -76,9 +76,8 @@ export class SearchForm extends Component {
   }
 }
 
-export const mapStateToProps = ({ breeds, favorites, errorMsg, isLoading }) => ({
-  breeds, 
-  favorites,
+export const mapStateToProps = ({ breeds, errorMsg, isLoading }) => ({
+  breeds,
   errorMsg,
   isLoading
 });

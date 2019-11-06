@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoritesContainer should match the snapshot 1`] = `
+<section>
+  <div
+    key="ry8KWgqEQ"
+  >
+    <img
+      alt="dog"
+      id={1095}
+      src="https://cdn2.thedogapi.com/images/ry8KWgqEQ.jpg"
+    />
+    <button
+      onClick={[Function]}
+    >
+      Delete Favorite
+    </button>
+  </div>
+  <div
+    key="edNIMgpSw"
+  >
+    <img
+      alt="dog"
+      id={1098}
+      src="https://cdn2.thedogapi.com/images/edNIMgpSw.jpg"
+    />
+    <button
+      onClick={[Function]}
+    >
+      Delete Favorite
+    </button>
+  </div>
+</section>
+`;

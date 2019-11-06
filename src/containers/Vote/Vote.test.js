@@ -73,7 +73,7 @@ describe('Vote', () => {
 
 describe('mapStateToProps', () => {
 
-  it('should return an object of favs array', () => {
+  it('should return an object of favs array and randomPup obj', () => {
     const mockState = {
       favorites: mockFavs,
       randomPup: mockRandomPup,
