@@ -1,4 +1,53 @@
+@import './src/variables.scss';
+
+.vote-section {
+  width: 100%;
+  font-family: $header-font;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.voting-btns {
+  width: 50%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.vote-btn {
+  height: 50px;
+  width: 200px;
+  font-size: 1.5em;
+  border: 2px groove black;
+  border-radius: 5px;
+  margin: auto;
+  &:hover {
+    color: white;
+    background-color: $love-color;
+  }
+}
+
 .voteImg {
-  height: 300px;
-  width: 400px;
+    height: auto; 
+    width: auto; 
+    max-width: 500px; 
+    max-height: 400px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.fav-btn {
+  height: 40px;
+  width: 200px;
+  font-size: 1.5em;
+  border: 2px groove black;
+  border-radius: 5px;
+  margin-top: 20px; 
+  &:hover {
+    color: white;
+    background-color: $love-color;
+  } 
 }

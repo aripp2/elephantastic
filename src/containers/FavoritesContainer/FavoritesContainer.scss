@@ -1,6 +1,41 @@
-img {
-    height: auto; 
-    width: auto; 
-    max-width: 400px; 
-    max-height: 400px;
+@import './src/variables.scss';
+
+
+.favs-container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.img-container {
+  width: 30%;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fav-img {
+  height: auto; 
+  width: auto; 
+  max-width: 400px; 
+  max-height: 400px;
+  border-radius: 5px;
+  // position: relative;
+}
+
+.remove-btn {
+  height: 30px;
+  // width: auto;
+  font-family: $body-font;
+
+  font-size: 0.8em;
+  border-radius: 0 0 5px 5px;
+  &:hover {
+    color: white;
+    font-weight: 700;
+    background-color: black;
+  }
 }

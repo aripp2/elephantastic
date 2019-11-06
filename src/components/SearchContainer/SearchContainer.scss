@@ -1,0 +1,18 @@
+@import './src/variables.scss';
+
+.searchImgs {
+  height: 100vh;
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.search-img {
+  height: auto; 
+  width: auto; 
+  max-width: 45%; 
+  max-height: 45%;
+  border-radius: 5px;
+}

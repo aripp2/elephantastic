@@ -6,9 +6,9 @@ const NavHeader = () => {
   return (
     <header>
       <h1>PuppyLove</h1>
-      <NavLink to='/'>VOTE</NavLink>
-      <NavLink to='/search'>SEARCH</NavLink>
-      <NavLink to='/favorites'>FAVORITES</NavLink>
+      <NavLink exact to='/' className='nav-link' activeClassName='selected'>VOTE</NavLink>
+      <NavLink to='/search' className='nav-link' activeClassName='selected'>SEARCH</NavLink>
+      <NavLink to='/favorites' className='nav-link' activeClassName='selected'>FAVORITES</NavLink>
     </header>
   )
 }

@@ -19,15 +19,17 @@ export const Vote = ({ randomPup, favorites, updateRandom, updateFavs }) => {
   }
   const buttonRole = favStatus ? 'Delete Favorite' : 'Add Favorite';
   return (
-    <section>
-      <button
-        className='vote-btn'
-        onClick={() => {postVote(id, 1); updateRandom()}}
-      >LOVE IT!</button>
-      <button
-        className='vote-btn'
-        onClick={() => {postVote(id, 0); updateRandom()}}
-      >NOT SO MUCH</button>
+    <section className='vote-section'>
+      <div className='voting-btns'>
+        <button
+          className='vote-btn'
+          onClick={() => {postVote(id, 1); updateRandom()}}
+        >LOVE IT!</button>
+        <button
+          className='vote-btn'
+          onClick={() => {postVote(id, 0); updateRandom()}}
+        >NOT SO MUCH</button>
+      </div>  
       <img className='voteImg' src={url} alt='dog'/>
       <button
         className='fav-btn'

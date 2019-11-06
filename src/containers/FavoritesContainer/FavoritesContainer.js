@@ -6,13 +6,15 @@ export const FavoritesContainer = ({ favorites, updateFavs }) => {
 
   const favs = favorites.map(fav => {
     return (
-      <div key={fav.image_id}>
+      <div className='img-container' key={fav.image_id}>
         <img 
+          className='fav-img'
           id={fav.id} 
           src={fav.image.url} 
           alt='dog' 
         />
         <button
+          className='remove-btn'
           onClick={() => updateFavs(fav.image_id, true, fav.id)}
         >Delete Favorite</button>
       </div>
@@ -20,7 +22,7 @@ export const FavoritesContainer = ({ favorites, updateFavs }) => {
   })
 
   return (
-    <section>
+    <section className='favs-container'>
       {favs}
     </section>
   )

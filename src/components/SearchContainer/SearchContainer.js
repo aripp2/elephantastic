@@ -3,7 +3,8 @@ import './SearchContainer.scss';
 
 const SearchContainer = ({ breedImages }) => {
   const selectedBreedImages = breedImages.map(image => {
-    return <img 
+    return <img
+      className='search-img' 
       key={image.id}
       id={image.id}
       src={image.url}

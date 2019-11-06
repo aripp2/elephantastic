@@ -46,7 +46,7 @@ export class SearchForm extends Component {
     })
 
     return (
-      <div>
+      <div className='SearchContainer'>
         <aside>
           <form>
             <h3>Choose a Breed:</h3>
@@ -60,12 +60,12 @@ export class SearchForm extends Component {
           {selectedBreed && 
             <article>
               <h4>{selectedBreed.name}</h4>
-              <p>Breed Group: {selectedBreed.breed_group}</p>
-              <p>Bred For: {selectedBreed.bred_for}</p>
-              <p>Average Height: {selectedBreed.height.imperial} in</p>
-              <p>Average Weight: {selectedBreed.weight.imperial} lbs</p>
-              <p>Average Life Span: {selectedBreed.life_span}</p>
-              <p>{selectedBreed.temperament}</p>
+              <p><span>Breed Group: </span>{selectedBreed.breed_group}</p>
+              <p><span>Bred For: </span>{selectedBreed.bred_for}</p>
+              <p><span>Average Height: </span>{selectedBreed.height.imperial} in</p>
+              <p><span>Average Weight: </span>{selectedBreed.weight.imperial} lbs</p>
+              <p><span>Average Life Span: </span>{selectedBreed.life_span}</p>
+              <h5>{selectedBreed.temperament}</h5>
           </article>}
         </aside>
         {errorMsg && <h2>{errorMsg}</h2>}
