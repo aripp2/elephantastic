@@ -36,6 +36,6 @@ export const mapStateToProps = ({ favorites }) => ({
 export default connect(mapStateToProps)(FavoritesContainer);
 
 FavoritesContainer.propTypes = {
-  favorites = PropTypes.array,
-  updateFavs = PropTypes.func.isRequired
+  favorites: PropTypes.array,
+  updateFavs: PropTypes.func.isRequired
 }

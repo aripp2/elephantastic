@@ -49,8 +49,8 @@ export const mapStateToProps = ({ randomPup, favorites }) => ({
 export default connect(mapStateToProps)(Vote);
 
 Vote.propTypes = {
-  randomPup = PropTypes.object.isRequired,
-  favorites = PropTypes.array,
-  updateRandom = PropTypes.func.isRequired,
-  updateFavs = PropTypes.func.isRequired
+  randomPup: PropTypes.object.isRequired,
+  favorites: PropTypes.array,
+  updateRandom: PropTypes.func.isRequired,
+  updateFavs: PropTypes.func.isRequired
 }

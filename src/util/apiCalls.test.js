@@ -60,7 +60,6 @@ describe('getRandom', () => {
 describe('postVote', () => {
   const mockImageID = '12345';
   const mockUpVote = '1';
-  const mockDownVote = '0';
   const mockOptions = {
     method: 'POST',
     body: JSON.stringify({
